@@ -1,0 +1,58 @@
+# GitHub Actions — Auto Deploy to Cloudflare Pages
+# Har baar jab aap 'main' branch par push karein,
+# ye workflow automatically Cloudflare par deploy kar dega.
+
+name: 🚀 Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:  # Manual trigger bhi possible
+
+permissions:
+  contents: read
+  deployments: write
+  pull-requests: write
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      # 1. Code checkout
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Node.js setup
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      # 3. Deploy to Cloudflare Pages using Wrangler
+      - name: 🌐 Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=swiftload --commit-dirty=true
+          # For production branch only
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      # 4. Comment PR with preview URL (optional)
+      - name: 💬 Add PR Comment
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ **SwiftLoad Preview Deployed!**\n\nCloudflare Pages par deploy ho gaya. Preview URL abhi tak aa raha hai...'
+            })

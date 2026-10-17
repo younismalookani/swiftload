@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwiftLoad — Fast Video Downloader</title>
+  <meta name="description" content="Download videos from YouTube, TikTok, Facebook, Instagram, Twitter and more — fast, free, and watermark-free with SwiftLoad." />
+  <meta name="keywords" content="video downloader, youtube downloader, tiktok downloader, facebook video download, instagram reels download" />
+  <meta property="og:title" content="SwiftLoad — Fast Video Downloader" />
+  <meta property="og:description" content="Download videos from any platform at lightning speed." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Animated background orbs -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <!-- Grid overlay -->
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <header class="header">
+    <nav class="nav">
+      <div class="nav-logo">
+        <div class="logo-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" fill="url(#logoGrad)" />
+            <path d="M10 10L18 14L10 18V10Z" fill="white" />
+            <defs>
+              <linearGradient id="logoGrad" x1="2" y1="2" x2="26" y2="26" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#7c3aed"/>
+                <stop offset="1" stop-color="#06b6d4"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">Swift<span class="logo-accent">Load</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#platforms" class="nav-link">Platforms</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+      </div>
+      <div class="nav-badge">
+        <span class="badge-dot"></span>
+        <span>Powered by Cloudflare</span>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="hero-chip">
+          <span class="chip-icon">⚡</span>
+          <span>Cloudflare-Powered · 185+ Edge Locations</span>
+        </div>
+
+        <h1 class="hero-title">
+          Download Any Video<br />
+          <span class="gradient-text">At Lightning Speed</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          YouTube, TikTok, Facebook, Instagram, Twitter aur aur bhi kai platforms se
+          videos download karein — bilkul free, watermark-free aur ultra-fast.
+        </p>
+
+        <!-- Main Download Card -->
+        <div class="download-card" id="download-card">
+          <!-- Platform Detection Badge -->
+          <div class="detected-platform" id="detected-platform" aria-live="polite">
+            <span class="platform-icon" id="platform-icon">🔗</span>
+            <span class="platform-name" id="platform-name">URL paste karein neeche</span>
+          </div>
+
+          <!-- Input Row -->
+          <div class="input-row">
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+              </span>
+              <input
+                type="url"
+                id="url-input"
+                class="url-input"
+                placeholder="https://www.youtube.com/watch?v=..."
+                autocomplete="off"
+                spellcheck="false"
+                aria-label="Video URL"
+              />
+              <button class="paste-btn" id="paste-btn" title="Clipboard se paste karein" aria-label="Paste from clipboard">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+              </button>
+            </div>
+
+            <button class="download-btn" id="download-btn" aria-label="Download video">
+              <span class="btn-text">Download</span>
+              <span class="btn-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <!-- Quality & Format Options -->
+          <div class="options-row">
+            <div class="option-group">
+              <label class="option-label" for="quality-select">Quality</label>
+              <select id="quality-select" class="option-select" aria-label="Video quality">
+                <option value="max">Best Quality</option>
+                <option value="2160">4K (2160p)</option>
+                <option value="1440">2K (1440p)</option>
+                <option value="1080" selected>Full HD (1080p)</option>
+                <option value="720">HD (720p)</option>
+                <option value="480">SD (480p)</option>
+                <option value="360">360p</option>
+              </select>
+            </div>
+            <div class="option-group">
+              <label class="option-label" for="format-select">Format</label>
+              <select id="format-select" class="option-select" aria-label="Download format">
+                <option value="video">Video (MP4)</option>
+                <option value="audio">Audio Only (MP3)</option>
+                <option value="mute">Video (No Sound)</option>
+              </select>
+            </div>
+            <div class="option-group toggle-group">
+              <label class="option-label" for="tiktok-watermark">TikTok Watermark</label>
+              <label class="toggle" for="tiktok-watermark">
+                <input type="checkbox" id="tiktok-watermark" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress / Result Area -->
+        <div class="result-area" id="result-area" aria-live="polite">
+          <!-- Filled by JS -->
+        </div>
+
+        <!-- Platform Badges -->
+        <div class="platform-badges" id="platforms">
+          <div class="platform-badge" data-platform="youtube" title="YouTube">
+            <span>▶ YouTube</span>
+          </div>
+          <div class="platform-badge" data-platform="tiktok" title="TikTok">
+            <span>♪ TikTok</span>
+          </div>
+          <div class="platform-badge" data-platform="facebook" title="Facebook">
+            <span>f Facebook</span>
+          </div>
+          <div class="platform-badge" data-platform="instagram" title="Instagram">
+            <span>📷 Instagram</span>
+          </div>
+          <div class="platform-badge" data-platform="twitter" title="Twitter/X">
+            <span>𝕏 Twitter</span>
+          </div>
+          <div class="platform-badge" data-platform="reddit" title="Reddit">
+            <span>🤖 Reddit</span>
+          </div>
+          <div class="platform-badge" data-platform="vimeo" title="Vimeo">
+            <span>🎬 Vimeo</span>
+          </div>
+          <div class="platform-badge" data-platform="soundcloud" title="SoundCloud">
+            <span>☁ SoundCloud</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">185+</div>
+            <div class="stat-label">Cloudflare Edge Locations</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">8+</div>
+            <div class="stat-label">Supported Platforms</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">4K</div>
+            <div class="stat-label">Max Quality Support</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">0₨</div>
+            <div class="stat-label">Free Forever</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-section" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-chip">How It Works</div>
+          <h2 class="section-title">3 Simple Steps</h2>
+          <p class="section-subtitle">Seconds mein apni video download karein</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+            </div>
+            <h3 class="step-title">Link Copy Karein</h3>
+            <p class="step-desc">YouTube, TikTok, Facebook ya kisi bhi supported platform se video ka URL copy karein.</p>
+          </div>
+          <div class="step-connector" aria-hidden="true">→</div>
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+            </div>
+            <h3 class="step-title">Paste Karein</h3>
+            <p class="step-desc">URL ko SwiftLoad mein paste karein aur apni quality aur format choose karein.</p>
+          </div>
+          <div class="step-connector" aria-hidden="true">→</div>
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+            </div>
+            <h3 class="step-title">Download Karein</h3>
+            <p class="step-desc">Download button dabayein aur Cloudflare CDN ki wajah se lightning-fast speed milegi.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-chip">Features</div>
+          <h2 class="section-title">Kyun SwiftLoad?</h2>
+          <p class="section-subtitle">Doosre tools se behtar kyun hai</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">⚡</div>
+            <h3 class="feature-title">Ultra-Fast Speed</h3>
+            <p class="feature-desc">Cloudflare ke 185+ edge servers ki wajah se har jagah se fastest download speed.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🎯</div>
+            <h3 class="feature-title">Watermark-Free</h3>
+            <p class="feature-desc">TikTok videos bina watermark ke download karein. Clean aur professional.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🔒</div>
+            <h3 class="feature-title">100% Secure</h3>
+            <p class="feature-desc">Koi files server par save nahin hoti. Direct download link milta hai.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🆓</div>
+            <h3 class="feature-title">Bilkul Free</h3>
+            <p class="feature-desc">Koi subscription nahin, koi ads nahin, koi sign-up nahin. Forever free.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">📱</div>
+            <h3 class="feature-title">All Devices</h3>
+            <p class="feature-desc">Mobile, tablet ya desktop — har device par perfectly kaam karta hai.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🎬</div>
+            <h3 class="feature-title">Multiple Formats</h3>
+            <p class="feature-desc">MP4 video, MP3 audio ya 4K quality — aap choose karein jo chahiye.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <span class="logo-text">Swift<span class="logo-accent">Load</span></span>
+          <p class="footer-tagline">Powered by Cloudflare · Built with ❤️</p>
+        </div>
+        <div class="footer-note">
+          <p>⚠️ Sirf wo videos download karein jinhe aap download karne ke authorized hain.</p>
+          <p>Copyright © 2024 SwiftLoad. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

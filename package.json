@@ -1,0 +1,16 @@
+{
+  "name": "swiftload",
+  "version": "1.0.0",
+  "description": "Fast video downloader powered by Cloudflare Pages",
+  "scripts": {
+    "dev": "wrangler pages dev public --compatibility-date=2024-09-02",
+    "deploy": "wrangler pages deploy public --project-name=swiftload",
+    "preview": "wrangler pages dev public"
+  },
+  "devDependencies": {
+    "wrangler": "^3.80.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
